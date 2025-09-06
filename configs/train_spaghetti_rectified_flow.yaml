@@ -1,0 +1,138 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data_3d: chair_6755 #chair_salad, chair_6755
+  - data_sketch: all_sketch_unseen # all_sketch, all_sketch_unseen, informative_drawings_sketch_anime_style
+  - data_test: ProSketch-3Dchair
+  - model: stage2_rectified_flow # stage1_rectified_flow, stage2_rectified_flow
+  - callbacks: rectified_flow # rectified_flow, default
+  - logger: wandb_for_spaghetti # wandb, tensorboard, wandb_for_spaghetti
+  - trainer: default
+  - paths: default
+  - hydra: default
+  - debug: null
+
+name: default
+model_name: ${model.name}
+seed: 2025
+precision: 16-mixed # 16, 32, bf16, 16-mixed
+use_amp: false # false
+#precision: bf16 # 16, 32, bf16, 16-mixed
+#use_amp: false # false, true
+#amp_type: 'bf16' # 16, 32, bf16, 16-mixed
+fast: true
+
+gpus: [ 0 ]
+epochs: 500
+#batch_size: 8
+#batch_size: 16
+batch_size: 20
+#batch_size: 24
+#batch_size: 26
+#batch_size: 30
+#batch_size: 32
+#batch_size: 36
+#batch_size: 40
+#batch_size: 42
+#batch_size: 44
+#batch_size: 46
+#batch_size: 48
+#batch_size: 50
+#batch_size: 52
+#batch_size: 54
+#batch_size: 56
+#batch_size: 60
+#batch_size: 64
+#batch_size: 70
+#batch_size: 76
+#batch_size: 80
+#batch_size: 84
+#batch_size: 86
+#batch_size: 90
+#batch_size: 94
+#batch_size: 100
+#batch_size: 104
+#batch_size: 108
+#batch_size: 112
+#batch_size: 128
+#batch_size: 132
+#batch_size: 138
+#batch_size: 160
+#batch_size: 192
+#batch_size: 200
+#batch_size: 218
+#batch_size: 226
+#batch_size: 256
+#batch_size: 288
+#batch_size: 336
+#batch_size: 420
+#batch_size: 440
+#batch_size: 500
+#batch_size: 512
+#batch_size: 640
+#batch_size: 700
+
+num_workers: 4
+
+#resume_checkpoint_path: null
+#resume_checkpoint_path: /parallel_scratch/xl01339/Enhancing_Sketch-to-3D_Controllability/runs/stage1_rectified_flow/0901_031255/checkpoints/last.ckpt
+#resume_checkpoint_path: /parallel_scratch/xl01339/Enhancing_Sketch-to-3D_Controllability/runs/stage2_rectified_flow/0903_073502/checkpoints/last.ckpt
+resume_checkpoint_path: /scratch/xl01339/Enhancing_Sketch-to-3D_Controllability/runs/stage2_rectified_flow/0903_073502/checkpoints/last.ckpt
+
+steps: 100
+base_lr: 1e-4
+gradient_clip_val: 1.0
+gradient_clip_algorithm: "norm"
+every_n_train_steps: 5000 # 5000
+#val_check_interval: 40 # 4096
+# val_check_interval must be smaller than every_n_train_steps!!!
+#limit_val_batches: 16
+check_val_every_n_epoch: 100
+update_every: 1
+log_every_n_steps: 10
+scale_lr: false
+
+# deepspeed
+num_nodes: 1
+node_rank: 0
+num_gpus: 1
+deepspeed: true
+deepspeed2: false
+
+
+# Evaluation
+#stage1_model_path: "0706_233917"
+#stage1_model_path: "0710_002126"
+#stage1_model_path: "0805_155953"
+
+#stage1_rectified_flow
+#stage1_model_path: "0817_073850"
+#stage1_model_path: "0817_074013"
+#stage1_model_path: "0817_100508"
+#stage1_model_path: "0817_092146"
+#stage1_model_path: "0818_071728"
+#stage1_model_path: "0817_202227"
+#stage1_model_path: "0817_180248"
+#stage1_model_path: "0817_175718"
+#stage1_model_path: "0821_121619"
+#stage1_model_path: "0821_094556"
+#stage1_model_path: "0821_134501"
+#stage1_model_path: "0823_113146"
+#stage1_model_path: "0824_223335"
+
+
+# stage1_rectified_flow MOE model
+#stage1_model_path: "0819_090453"
+#stage1_model_path: "0819_105439"
+#stage1_model_path: "0819_105939"
+#stage1_model_path: "0821_014811"
+#stage1_model_path: "0822_232149"
+#stage1_model_path: "0826_094125"
+#stage1_model_path: "0831_115811"
+#stage1_model_path: "0901_031255"
+#stage1_model_path: "0902_012505"
+stage1_model_path: "0905_055342"
+
+
+

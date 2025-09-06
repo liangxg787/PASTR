@@ -1,0 +1,9 @@
+wandb:
+  _target_: pytorch_lightning.loggers.WandbLogger
+  project: Enhancing_Sketch-to-3D_Controllability
+  name: ${model_name}-${model.dataset_kwargs.sketch_path}-${epochs}-${batch_size}-${model.model.denoiser_cfg.params.input_size}-${model.model.first_stage_config.from_pretrained}
+  save_dir: "./"
+  entity: ngene
+  log_model: true
+  job_type: train
+

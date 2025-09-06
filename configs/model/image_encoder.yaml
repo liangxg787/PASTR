@@ -1,0 +1,24 @@
+vit_encoder:
+  type: ViTImageEncoder
+  kwargs:
+    version: 'google/vit-base-patch16-224-in21k'
+    image_size: 224
+    use_cls_token: true
+    hidden_size: 768
+
+dinov2_base_encoder:
+  type: DinoImageEncoder
+  kwargs:
+    version: 'facebook/dinov2-base'
+    image_size: 256
+    use_cls_token: true
+    hidden_size: 768
+
+
+dinov2_large_encoder:
+  type: DinoImageEncoder
+  kwargs:
+    version: 'facebook/dinov2-large'
+    image_size: 256
+    use_cls_token: true
+    hidden_size: 1024

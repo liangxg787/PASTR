@@ -1,0 +1,13 @@
+sketch_path:
+  - data_sketch1: informative_drawings_sketches/anime_style
+  - data_sketch2: informative_drawings_sketches/opensketch_style
+  - data_sketch3: clipasso_16strokes
+  - data_sketch4: clipasso_32strokes
+#  - data_sketch5: clipasso_8strokes
+sketch_tag:
+  - data_sketch1: informative_drawings
+  - data_sketch2: informative_drawings
+  - data_sketch3: clipasso
+  - data_sketch4: clipasso
+#  - data_sketch5: clipasso
+image_size: 256

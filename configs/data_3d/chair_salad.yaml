@@ -1,0 +1,3 @@
+latent_path: salad_data/spaghetti_chair_latents.hdf5 # file path from the salad.utils.paths.DATA_DIR directory.
+#latent_path: 03001627_10_latents/spaghetti_chair_latents_10_samples_mean_std.hdf5
+spaghetti_tag: "chairs_large"

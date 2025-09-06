@@ -1,0 +1,8 @@
+defaults:
+  - default
+
+mode: MULTIRUN
+
+sweeper:
+  params:
+    model: stage1, stage2

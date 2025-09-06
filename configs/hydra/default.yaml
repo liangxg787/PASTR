@@ -1,0 +1,9 @@
+job:
+  chdir: true
+
+run:
+  dir: ${paths.save_dir}
+
+sweep:
+  dir: runs/${now:%m%d_%H%M%S}
+  subdir: ${model_name}

@@ -1,0 +1,13 @@
+_target_: pytorch_lightning.Trainer
+accelerator: gpu
+devices: ${gpus}
+max_epochs: ${epochs}
+#max_steps: ${steps}
+gradient_clip_val: ${gradient_clip_val}
+gradient_clip_algorithm: ${gradient_clip_algorithm}
+accumulate_grad_batches: ${update_every}
+log_every_n_steps: ${log_every_n_steps}
+check_val_every_n_epoch: ${check_val_every_n_epoch}
+#val_check_interval: ${val_check_interval}
+#limit_val_batches: ${limit_val_batches}
+num_sanity_val_steps: 0

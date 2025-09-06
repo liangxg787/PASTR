@@ -1,0 +1,26 @@
+defaults:
+  - stage_default
+  - encoder_vit
+
+_target_: src.models.stage1.Stage1Model
+network:
+  _target_: src.model_components.network.CondDiffNetwork
+  input_dim: 16
+  residual: true
+  context_dim: ${model.encoded_image_dim}
+  context_embedding_dim: 1024
+  embedding_dim: 512
+  encoder_use_time: false
+  encoder_type: pointwise
+  decoder_type: transformer_encoder
+  enc_num_layers: 2
+  dec_num_layers: 6
+  use_timestep_embedder: true
+  timestep_embedder_dim: 128
+
+name: stage1
+global_normalization: partial
+
+dataset_kwargs:
+  repeat: 1
+  data_keys: ["g_js_affine"]

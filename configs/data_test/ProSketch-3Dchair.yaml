@@ -1,0 +1,5 @@
+#test_3d_path: "/nobackup/babbage/users/xl01339/ProSketch-3Dchair/ProSketch-3Dchair_3D"
+#test_sketch_path: "/nobackup/babbage/users/xl01339/ProSketch-3Dchair/ProSketch-3Dchair_image"
+test_3d_path: "ProSketch-3Dchair/ProSketch-3Dchair_3D"
+test_sketch_path: "ProSketch-3Dchair/ProSketch-3Dchair_image"
+test_dataset_tag: "ProSketch"

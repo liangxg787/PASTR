@@ -1,0 +1,3 @@
+encoder_model: "encoder_dino_v2_large"
+encoded_image_dim: 1024
+encoded_image_dim_and_zc_dim: 1040

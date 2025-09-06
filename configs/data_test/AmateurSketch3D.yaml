@@ -1,0 +1,3 @@
+test_3d_path: "AmateurSketch3D/chair_3d"
+test_sketch_path: "AmateurSketch3D/chair_png"
+test_dataset_tag: "AmateurSketch"

@@ -1,0 +1,25 @@
+defaults:
+  - stage_default
+  - encoder_vit
+
+_target_: src.models.stage2.Stage2Model
+network:
+  _target_: src.model_components.network.CondDiffNetwork
+  input_dim: 512
+  residual: true
+  context_dim: ${model.encoded_image_dim_and_zc_dim}
+  context_embedding_dim: 1024
+  embedding_dim: 512
+  encoder_use_time: false
+  encoder_type: transformer
+  decoder_type: transformer_encoder
+  enc_num_layers: 6
+  dec_num_layers: 6
+  use_timestep_embedder: true
+  timestep_embedder_dim: 128
+
+name: stage2
+
+dataset_kwargs:
+  repeat: 1
+  data_keys: ["s_j_affine", "g_js_affine"]

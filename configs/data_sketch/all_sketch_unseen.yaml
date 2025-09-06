@@ -1,0 +1,7 @@
+sketch_path:
+  - data_sketch1: ProSketch-3Dchair/ProSketch-3Dchair_image
+  - data_sketch2: AmateurSketch3D/chair_svg
+sketch_tag:
+  - data_sketch1: ProSketch
+  - data_sketch2: AmateurSketch3
+image_size: 256

@@ -1,0 +1,9 @@
+# @package _global_
+
+defaults:
+  - train
+  - override hydra: multirun
+#  - override debug: default
+
+epochs: 1
+batch_size: 128

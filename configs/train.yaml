@@ -1,0 +1,54 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data_3d: chair_npz
+  - data_sketch: informative_drawings_sketch_anime_style
+  - data_test: ProSketch-3Dchair
+  - model: flow_diffusion
+  - callbacks: hy_callbacks
+  - logger: wandb # wandb.yaml, tensorboard.yaml
+  - trainer: default
+  - paths: default
+  - hydra: default
+  - debug: null
+
+name: default
+model_name: ${model.name}
+seed: 2025
+precision: 16-mixed
+fast: true
+
+gpus: [ 0 ]
+epochs: 100
+batch_size: 6
+num_workers: 3
+
+resume_checkpoint_path: null
+
+steps: 100
+use_amp: true
+amp_type: "bf16"
+base_lr: 1e-4
+gradient_clip_val: 1.0
+gradient_clip_algorithm: "norm"
+every_n_train_steps: 2000 # 5000
+val_check_interval: 160 # 4096
+# val_check_interval must be smaller than every_n_train_steps!!!
+limit_val_batches: 16
+check_val_every_n_epoch: 10
+update_every: 1
+log_every_n_steps: 10
+scale_lr: true
+
+# deepspeed
+num_nodes: 1
+node_rank: 0
+num_gpus: 1
+deepspeed: true
+deepspeed2: false
+
+
+# Evaluation
+stage1_model_path: "0706_233917"
+#stage1_model_path: "0710_002126"

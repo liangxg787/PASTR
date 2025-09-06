@@ -1,0 +1,25 @@
+# optimizer
+lr: 1e-4
+lr_warmup_steps: 500
+batch_size: ${batch_size}
+num_workers: ${num_workers}
+seed: ${seed}
+
+# dataset 
+dataset_kwargs:
+  data_path: ${data_3d.latent_path}
+  spaghetti_tag: ${data_3d.spaghetti_tag}
+  sketch_path: ${data_sketch.sketch_path}
+  sketch_tag: ${data_sketch.sketch_tag}
+  image_size: ${data_sketch.image_size}
+  test_3d_path: ${data_test.test_3d_path}
+  test_sketch_path: ${data_test.test_sketch_path}
+  test_dataset_tag: ${data_test.test_dataset_tag}
+  repeat: 3
+  data_keys: ["s_j_affine"]
+
+# model
+num_timesteps: 1000
+faster: true
+#validation_step: 10
+no_run_validation: false

@@ -1,0 +1,111 @@
+defaults:
+  - stage_default
+#  - encoder_vit
+#  - encoder_dinov2_base
+#  - encoder_dinov2_large
+#  - encoder_dinov3_vitb16
+  - encoder_dinov3_vitl16
+#  - image_encoder
+
+name: stage1_rectified_flow
+
+_target_: src.models.stage1_rectified_flow.Stage1Model
+network:
+#  _target_: src.model_components.network.CondDiffNetwork
+  _target_: src.model_components.network_with_moe.CondDiffNetwork
+  input_dim: 16
+  residual: true
+  context_dim: ${model.encoded_image_dim}
+  context_embedding_dim: 1024
+  embedding_dim: 512
+  encoder_use_time: false
+  encoder_type: pointwise
+  decoder_type: transformer_encoder
+#  decoder_type: transformer_decoder
+  enc_num_layers: 2
+  dec_num_layers: 6
+  use_timestep_embedder: true
+  timestep_embedder_dim: 128
+  enc_num_moe_layers: 1
+  enc_num_experts: 2
+  dec_num_moe_layers: 3
+  dec_num_experts: 6
+  use_swiglu: false
+
+
+#image_processor_cfg:
+#  target: src.model_components.preprocessors.ImageProcessorV2
+#  params:
+#    size: 224
+#    border_ratio: 0.15
+#
+#cond_stage_config:
+#  target: src.models.conditioner.SingleImageEncoder
+#  params:
+#    drop_ratio: 0.1
+#    main_image_encoder:
+#        type: ${model.vit_encoder.type}
+#        kwargs:
+#          version: ${model.vit_encoder.kwargs.version}
+#          image_size: ${model.vit_encoder.kwargs.image_size}
+#          use_cls_token: ${model.vit_encoder.kwargs.use_cls_token}
+#          hidden_size: ${model.vit_encoder.kwargs.hidden_size}
+
+#ema_config: # It would occur "the output of model prediction is None" without ema
+#  ema_model: LitEma
+#  ema_decay: 0.999
+#  ema_inference: true
+
+train_cfg:
+  weighting_scheme: "logit_normal"
+  batch_size: ${batch_size}
+  logit_mean: 0.0
+  logit_std: 1.0
+  mode_scale: 1.29
+  training_objective: "-v"
+
+scheduler_cfg:
+  target: src.model_components.flow_diffusion.scheduling_rectified_flow.RectifiedFlowScheduler
+  params:
+    num_train_timesteps: 1000
+    shift: 1
+    use_dynamic_shifting: false
+
+optimizer_cfg:
+#  optimizer_type: muon
+  optimizer_type: adamw
+  optimizer_adaw:
+    target: torch.optim.AdamW
+    params:
+      betas: [0.9, 0.99]
+      eps: 1.e-6
+      weight_decay: 1.e-2
+  optimizer_muon:
+    target: src.model_components.optimizers.Muon
+    params:
+      lr: 0.02
+      momentum: 0.95
+      nesterov: true
+      ns_steps: 5
+  scheduler:
+    target: src.model_components.utils.trainings.lr_scheduler.LambdaWarmUpCosineFactorScheduler
+    params:
+      warm_up_steps: 500 # 5000
+      f_start: 1.e-6
+      f_min: 1.e-3
+      f_max: 1.0
+
+torch_compile: true
+
+use_amp: ${use_amp}
+classifier_free_guidance: false
+free_guidance_weight: 1.0
+num_inference_steps: 50
+
+global_normalization: partial
+
+dataset_kwargs:
+  repeat: 3 # 1, 3, 6, 24, 30
+  data_keys: ["g_js_affine"]
+  num_workers: ${num_workers}
+  image_size: ${data_sketch.image_size}
