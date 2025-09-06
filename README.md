@@ -1,5 +1,4 @@
-# Enhancing_Sketch-to-3D_Controllability
-Disseration: Enhancing Sketch-to-3D Controllability via Video ControlNet in Multi-View Synthesis
+# PASTR: Enhancing Controllability of Part-aware Sketch-to-3D Generation via Tiered Rectified Flow
 
 ## 0 Environment
 You must make sure the GCC version >= 9.0.0
