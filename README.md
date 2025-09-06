@@ -1,15 +1,21 @@
 # PASTR: Enhancing Controllability of Part-aware Sketch-to-3D Generation via Tiered Rectified Flow
 
-## 0 Environment
+## Introduction
+
+The architecture is as follows:
+
+<img src="./doc/The_overview_of_the_architecture.png" width="800">
+
+## Environment
 You must make sure the GCC version >= 9.0.0
 ```shell
 conda env create -f environment.yml
 pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
 ```
 
-## 1 Dataset
+## Dataset
 
-### 1.0 Update submodule
+### Update submodule
 ```
 git submodule init
 git submodule update --init --recursive --remote
@@ -18,9 +24,9 @@ git submodule update --init --recursive --remote
 git submodule update --force --recursive --init --remote
 ```
 
-### 1.1 3D Dataset
+### 3D Dataset
 
-#### 1.1.1 Manifold
+#### Manifold
 Reference: https://github.com/hjwdzh/Manifold
 ##### a. Compile Manifold
 ```
@@ -35,23 +41,7 @@ make
 python src/dataset_preparation/shapeNet_processing/convert_to_manifold.py
 ```
 
-#### 1.1.2 ManifoldPlus
-Reference:https://github.com/hjwdzh/ManifoldPlus.git
-##### a. Compile ManifoldPlus
-```
-cd external/ManifoldPlus
-git submodule update --init --recursive
-mkdir build
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j8
-```
-##### b. Convert to ManifoldPlus data
-```
-python src/dataset_preparation/shapeNet_processing/convert_to_manifold.py
-```
-
-#### 1.1.2 SPAGHETTI representation
+#### SPAGHETTI representation
 Reference: https://github.com/liangxg787/spaghetti
 ```
 git submodule update
@@ -62,7 +52,7 @@ pip install dist/spaghetti-1.0.0.tar.gz
 sh make_dataset.sh
 ```
 
-#### 1.1.3 Building SPAGHETTI environment (Optional)
+#### Building SPAGHETTI environment (Optional)
 Reference: https://github.com/amirhertz/spaghetti
 ```
 conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
@@ -70,14 +60,14 @@ conda install scikit-image=0.18.1 igl -c conda-forge
 pip install vtk==9.2.4 tqdm pynput requests
 ```
 
-### 1.2 Sketch Dataset
+### Sketch Dataset
 
-#### 1.2.1 2D projection
+#### 2D projection
 ```
 python src/dataset_preparation/sketches_processing/2D_projection.py
 ```
 
-#### 1.2.2 informative-drawings
+#### informative-drawings
 Reference: https://github.com/carolineec/informative-drawings.git
 
 **a. Installation**
@@ -97,7 +87,7 @@ pip install git+https://github.com/openai/CLIP.git
 sh sh_script/convert_to_sketch_with_Informative.sh
 ```
 
-#### 1.2.3 CLIPasso
+#### CLIPasso
 Reference: https://github.com/yael-vinker/CLIPasso.git
 **a. Installation**
 ```
@@ -136,8 +126,8 @@ python ../Enhancing_Sketch-to-3D_Controllability/src/dataset_preparation/sketche
 ```
 
 
-## 2 Metrics
-### 2.1 Chamfer Distance (CD)
+## Metrics
+### Chamfer Distance (CD)
 
-### 2.2 Earth Mover's Distance (EMD)
+### Earth Mover's Distance (EMD)
 
