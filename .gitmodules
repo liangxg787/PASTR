@@ -1,0 +1,15 @@
+[submodule "external/EMD_module"]
+	path = external/EMD_module
+	url = git@github.com:liangxg787/EMD_module.git
+[submodule "external/spaghetti"]
+	path = external/spaghetti
+	url = git@github.com:liangxg787/spaghetti.git
+[submodule "external/Manifold"]
+	path = external/Manifold
+	url = https://github.com/hjwdzh/Manifold.git
+[submodule "external/ManifoldPlus"]
+	path = external/ManifoldPlus
+	url = https://github.com/hjwdzh/ManifoldPlus.git
+[submodule "external/pytorch_pcd_metrics"]
+	path = external/pytorch_pcd_metrics
+	url = https://github.com/superbijk/pytorch_pcd_metrics.git
